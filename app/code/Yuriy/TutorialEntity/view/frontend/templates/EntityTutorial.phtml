@@ -1,0 +1,16 @@
+<?php
+/** @var \Yuriy\TutorialViewModel\ViewModel\TutorialViewModel $block */
+$viewModel = $block->getViewModel();
+?>
+<?php $product = $viewModel->getProductById('1'); ?>
+<?php if (!is_null($product)) : ?>
+    <h2><?= $product->getName(); ?></h2>
+    <p><?= $product->getDescription() ?></p>
+<?php endif; ?>
+    <hr>
+<?php foreach ($viewModel->getCheapProducts(50) as $cheapProduct): ?>
+    <h2> <?= $cheapProduct->getName(); ?> </h2>
+    <h3> <?= $cheapProduct->getPrice(); ?> </h3>
+<?php endforeach; ?>
+
+

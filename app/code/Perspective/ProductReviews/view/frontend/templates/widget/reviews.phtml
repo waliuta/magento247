@@ -1,0 +1,17 @@
+<div class="product-reviews-widget">
+    <h2><?php echo $block->escapeHtml($block->getData('title')); ?></h2>
+    <?php $reviews = $block->getReviews(); ?>
+    <?php if ($reviews->getSize()): ?>
+        <ul class="review-list">
+            <?php foreach ($reviews as $review): ?>
+                <li>
+                    <strong><?php echo $block->escapeHtml($review->getTitle()); ?></strong>
+                    <p><?php echo $block->escapeHtml($review->getDetail()); ?></p>
+                    <p>Rating: <?php echo $review->getRatingSummary(); ?></p>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>No reviews found.</p>
+    <?php endif; ?>
+</div>

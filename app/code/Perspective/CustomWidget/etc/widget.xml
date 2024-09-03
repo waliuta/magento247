@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget class="Perspective\CustomWidget\Block\Widget\NewsletterSignup" id="perspective_customwidget_newsletter_signup">
+		<label>Newsletter Signup Form Block</label>
+		<description>Show a newsletter signup form</description>
+        <parameters>
+            <parameter name="title" sort_order="10" visible="true" xsi:type="text">
+                <label>Widget Title</label>
+            </parameter>
+        </parameters>    
+	</widget>
+</widgets>

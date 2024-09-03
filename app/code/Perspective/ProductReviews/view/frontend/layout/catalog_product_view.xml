@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="content">
+        <container name="product.reviews.widget" label="Product Reviews Widget" after="product.info.details">
+            <block class="Perspective\ProductReviews\Block\Widget\Reviews" 
+            name="reviews.widget" 
+            template="Perspective_ProductReviews::widget/reviews.phtml"/>
+        </container>
+    </referenceContainer>
+</page>

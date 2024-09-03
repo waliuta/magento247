@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="product_reviews_widget" class="Perspective\ProductReviews\Block\Widget\Reviews" is_enabled="true">
+        <label>Product Reviews Widget</label>
+        <description>Displays reviews for the current product.</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="true">
+                <label>Widget Title</label>
+            </parameter>
+            <parameter name="customwidgettext" sort_order="10" visible="true" xsi:type="text">
+                <label>Enter Custom text</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
