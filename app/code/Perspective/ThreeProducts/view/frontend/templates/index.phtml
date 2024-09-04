@@ -1,23 +1,22 @@
 <?php
-    /** @var $viewModel \Perspective\ThreeProducts\ViewModel\ThreeProductsViewModel */
-    /** @var $escaper \Magento\Framework\Escaper */
-    
-    $viewModel = $block->getViewModel();
+/** @var $viewModel \Perspective\ThreeProducts\ViewModel\ThreeProductsViewModel */
+/** @var $escaper \Magento\Framework\Escaper */
+
+$viewModel = $block->getViewModel();
 ?>
 
 <h2>Welcome to PerspectiveStudio</h2>
 
-<?php
-    if ($currentProduct = $viewModel->getCurrentProduct()) {
-echo $currentProduct->getName() . '<br />';
-echo $currentProduct->getSku() . '<br />';
-echo $currentProduct->getFinalPrice() . '<br />';
-echo $currentProduct->getProductUrl() . '<br />';
-print_r ($currentProduct->getCategoryIds()) . '<br />';
-}
-// print current category data
-if ($currentCategory = $viewModel->getCurrentCategory()) {
-echo $currentCategory->getName() . '<br />';
-echo $currentCategory->getUrl() . '<br />';
-}
-?>
+<?php if ($currentProduct = $viewModel->getCurrentProduct()): ?>
+    <p>
+        <?= $escaper->escapeHtml($currentProduct->getName()) ?><br />
+        <?= $escaper->escapeHtml($currentProduct->getSku()) ?><br />
+        <?= $escaper->escapeHtml($currentProduct->getFinalPrice()) ?><br />
+        <a href="<?= $escaper->escapeUrl($currentProduct->getProductUrl()) ?>">View Product</a><br />
+        <?php
+        // Выводим массив категорий
+        print_r($escaper->escapeHtml(print_r($currentProduct->getCategoryIds(), true)));
+        ?>
+    </p>
+<?php endif; ?>
+

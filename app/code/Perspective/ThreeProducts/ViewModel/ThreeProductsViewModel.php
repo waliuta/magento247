@@ -4,26 +4,22 @@ namespace Perspective\ThreeProducts\ViewModel;
 class ThreeProductsViewModel implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
     /**
-     * @var \Magento\Framework\Registry
+     * @var \Magento\Catalog\Block\Product\View
      */
-    private $registry;
+    private $viewproduct;
 
     public function __construct(
-        \Magento\Framework\Registry $registry,
-        array $data = []
+
+        \Magento\Catalog\Block\Product\View $viewproduct
     )
     {
-        $this->registry = $registry;
+
+        $this->viewproduct = $viewproduct;
     }
 
     public function getCurrentProduct()
     {        
-        return $this->registry->registry('current_product');
-    }
-
-    public function getCurrentCategory()
-    {        
-        return $this->registry->registry('current_category');
+        return $this->viewproduct->getProduct();
     }
 
 }
