@@ -5,7 +5,7 @@
 $viewModel = $block->getViewModel();
 ?>
 
-<h2>Welcome to PerspectiveStudio</h2>
+<h2>Вас може зацікавити</h2>
 
 <?php if ($currentProduct = $viewModel->getCurrentProduct()): ?>
     <p>
@@ -20,3 +20,29 @@ $viewModel = $block->getViewModel();
     </p>
 <?php endif; ?>
 
+<?php if ($currentProductCategoryIds = $viewModel->getCurrentCategoryIds()): ?>
+    <p>
+    <?php foreach ($currentProductCategoryIds as $categoryId) {
+            echo 'Category ID: ' . $categoryId . '<br />';    
+    }
+    ?> 
+    </p>
+<?php endif; ?>
+
+<?php
+$firstCategory = $viewModel->getCurrentFirstCategoryId();
+
+if ($firstCategory) {
+    echo 'Category ID: ' . $firstCategory . '<br />';
+}
+?>
+
+<?php
+$products = $viewModel->getProductsByCategoryId($currentProduct, $firstCategory, 10, 3);
+
+foreach ($products as $product) {
+    echo 'Product Name: ' . $product->getName() . '<br />';
+    echo 'Product SKU: ' . $product->getSku() . '<br />';
+    echo 'Product Price: ' . $product->getFinalPrice() . '<br />';
+}
+?>
