@@ -6,3 +6,18 @@
 ?>
 
 <h2>Welcome to PerspectiveStudio</h2>
+
+<?php
+    if ($currentProduct = $viewModel->getCurrentProduct()) {
+echo $currentProduct->getName() . '<br />';
+echo $currentProduct->getSku() . '<br />';
+echo $currentProduct->getFinalPrice() . '<br />';
+echo $currentProduct->getProductUrl() . '<br />';
+print_r ($currentProduct->getCategoryIds()) . '<br />';
+}
+// print current category data
+if ($currentCategory = $viewModel->getCurrentCategory()) {
+echo $currentCategory->getName() . '<br />';
+echo $currentCategory->getUrl() . '<br />';
+}
+?>
