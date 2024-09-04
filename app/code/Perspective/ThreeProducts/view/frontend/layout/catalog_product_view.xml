@@ -5,8 +5,7 @@
     <body>
         <referenceContainer name="product.info.main">
             <block name="Perspective_ThreeProducts" template="Perspective_ThreeProducts::index.phtml" 
-                after="product.info.price"
-                before="product.price.tier">
+                before="product.info.tabs">
                 <arguments>
                     <argument name="view_model" xsi:type="object">Perspective\ThreeProducts\ViewModel\ThreeProductsViewModel</argument>
                 </arguments>

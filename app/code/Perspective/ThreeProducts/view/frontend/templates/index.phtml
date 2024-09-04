@@ -1,51 +1,33 @@
 <?php
-/** @var $viewModel \Perspective\ThreeProducts\ViewModel\ThreeProductsViewModel */
-/** @var $escaper \Magento\Framework\Escaper */
+/** @var \Perspective\ThreeProducts\ViewModel\ThreeProductsViewModel $viewModel */
+/** @var \Magento\Framework\Escaper $escaper */
 
 $viewModel = $block->getViewModel();
 ?>
 
-<h2>Вас може зацікавити</h2>
+<h2><?php echo __('Вас може зацікавити'); ?></h2>
 
 <?php if ($currentProduct = $viewModel->getCurrentProduct()): ?>
-    <p>
-        <?= $escaper->escapeHtml($currentProduct->getName()) ?><br />
-        <?= $escaper->escapeHtml($currentProduct->getSku()) ?><br />
-        <?= $escaper->escapeHtml($currentProduct->getFinalPrice()) ?><br />
-        <a href="<?= $escaper->escapeUrl($currentProduct->getProductUrl()) ?>">View Product</a><br />
+    <?php if ($firstCategory = $viewModel->getCurrentFirstCategoryId()): ?>
         <?php
-        // Выводим массив категорий
-        print_r($escaper->escapeHtml(print_r($currentProduct->getCategoryIds(), true)));
+        $products = $viewModel->getProductsByCategoryId($currentProduct, $firstCategory, 10, 3);
+
+        foreach ($products as $product): 
+            $sku = $product->getSku();
+            $name = $product->getName();
+            $price = $product->getFinalPrice();
+            $imageUrl = $product->getMediaConfig()->getMediaUrl($product->getImage());
         ?>
-    </p>
+            <div>
+                <span><?php echo $sku; ?><br /></span>
+                <span><?php echo $name; ?><br /></span>
+                <span><?php echo $price; ?><br /></span>
+                <img src="<?php echo $imageUrl; ?>" width="100" alt="<?php echo $name; ?>"><br />
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
 <?php endif; ?>
 
-<?php if ($currentProductCategoryIds = $viewModel->getCurrentCategoryIds()): ?>
-    <p>
-    <?php foreach ($currentProductCategoryIds as $categoryId) {
-            echo 'Category ID: ' . $categoryId . '<br />';    
-    }
-    ?> 
-    </p>
-<?php endif; ?>
 
-<?php
-$firstCategory = $viewModel->getCurrentFirstCategoryId();
 
-if ($firstCategory) {
-    echo 'Category ID: ' . $firstCategory . '<br />';
-}
-?>
 
-<?php
-$products = $viewModel->getProductsByCategoryId($currentProduct, $firstCategory, 10, 3);
-
-foreach ($products as $product) {
-    echo 'Product SKU: ' . $product->getSku() . '<br />';
-    echo 'Product Name: ' . $product->getName() . '<br />';
-    echo 'Product Price: ' . $product->getFinalPrice() . '<br />';
-    $imageUrl = $product->getMediaConfig()->getMediaUrl($product->getImage()); ?>
-    <img src="<?php echo $imageUrl; ?>" width="100" alt="<?php echo $product->getName(); ?>">
-<?php    
-}
-?>
