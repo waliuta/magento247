@@ -41,8 +41,11 @@ if ($firstCategory) {
 $products = $viewModel->getProductsByCategoryId($currentProduct, $firstCategory, 10, 3);
 
 foreach ($products as $product) {
-    echo 'Product Name: ' . $product->getName() . '<br />';
     echo 'Product SKU: ' . $product->getSku() . '<br />';
+    echo 'Product Name: ' . $product->getName() . '<br />';
     echo 'Product Price: ' . $product->getFinalPrice() . '<br />';
+    $imageUrl = $product->getMediaConfig()->getMediaUrl($product->getImage()); ?>
+    <img src="<?php echo $imageUrl; ?>" width="100" alt="<?php echo $product->getName(); ?>">
+<?php    
 }
 ?>
