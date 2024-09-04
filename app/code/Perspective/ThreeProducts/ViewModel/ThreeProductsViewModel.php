@@ -26,7 +26,6 @@ class ThreeProductsViewModel implements \Magento\Framework\View\Element\Block\Ar
         return $this->registry->registry('current_category');
     }
 
-
 }
 
 
